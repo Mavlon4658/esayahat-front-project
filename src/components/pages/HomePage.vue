@@ -1,9 +1,17 @@
 <script>
-    // Import Swiper Vue.js components
-    import { Swiper, SwiperSlide } from 'swiper/vue';
+// Import Swiper Vue.js components
+import { Swiper, SwiperSlide } from 'swiper/vue';
 
-    // Import Swiper styles
-    import 'swiper/css';
+// Import Swiper styles
+import 'swiper/css';
+
+import toursImg1 from '@/assets/images/tour_card_1.png'
+import toursImg2 from '@/assets/images/tour_card_2.png'
+import toursImg3 from '@/assets/images/tour_card_3.png'
+import toursImg4 from '@/assets/images/tour_card_4.png'
+import toursImg5 from '@/assets/images/tour_card_5.png'
+import toursImg6 from '@/assets/images/tour_card_6.png'
+import toursImg7 from '@/assets/images/tour_card_7.png'
 
 export default {
     name: "HomePage",
@@ -24,7 +32,7 @@ export default {
                     from: 'Алматы',
                     oldPrice: '1 439 097〒',
                     price: '953 284〒',
-                    img: 1,
+                    img: toursImg1,
                 },
                 {
                     discount: '-47%',
@@ -33,7 +41,7 @@ export default {
                     from: 'Мальдивы из Алматы',
                     oldPrice: '1 140 134〒',
                     price: '778 150〒',
-                    img: 2,
+                    img: toursImg2,
                 },
                 {
                     discount: '-14%',
@@ -42,7 +50,7 @@ export default {
                     from: 'Астаны',
                     oldPrice: '991 958〒',
                     price: '867 479〒',
-                    img: 3,
+                    img: toursImg3,
                 },
                 {
                     discount: '-24%',
@@ -51,7 +59,7 @@ export default {
                     from: 'Алматы',
                     oldPrice: '906 504〒',
                     price: '730 541〒',
-                    img: 4,
+                    img: toursImg4,
                 },
                 {
                     discount: '-7%',
@@ -60,7 +68,7 @@ export default {
                     from: 'из Астаны',
                     oldPrice: '1 734 064〒',
                     price: '1 617 969〒',
-                    img: 5,
+                    img: toursImg5,
                 },
                 {
                     discount: '-6%',
@@ -69,7 +77,7 @@ export default {
                     from: 'из Алматы',
                     oldPrice: '996 486〒',
                     price: '939 546〒',
-                    img: 6,
+                    img: toursImg6,
                 },
                 {
                     discount: '-6%',
@@ -78,7 +86,7 @@ export default {
                     from: 'Алматы',
                     oldPrice: '1 439 097〒',
                     price: '953 284〒',
-                    img: 7,
+                    img: toursImg7,
                 },
             ],
             lowest: [
@@ -245,7 +253,7 @@ export default {
                                 <img src="@/assets/images/discount-icon.svg" alt="">
                                 <span class="absolute left-[5.16px] top-[9.75px] text-[13px] text-white">{{ tour.discount }}</span>
                             </div>
-                            <img :src="`src/assets/images/tour_card_${tour.img}.png`" class="h-[200px] w-full object-cover" alt="">
+                            <img :src="tour.img" class="h-[200px] w-full object-cover" alt="">
                             <div class="p-[16px]">
                                 <div class="flex items-center gap-[10px] mb-[10.5px]">
                                     <img src="@/assets/images/fly.svg" alt="">
