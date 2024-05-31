@@ -15,7 +15,7 @@ export default {
 
 <template>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-  <div class="w-full select-none bg-transparent absolute z-[2] py-5">
+  <div class="w-full select-none bg-transparent absolute z-[3] py-5">
     <div class="flex justify-between mx-auto xl:px-[8.5rem] lg:px-24 px-5 items-center cursor-default">
       <div
           class="flex cursor-pointer gap-2 items-center hover:translate-x-[.3rem] transition-all duration-200"
