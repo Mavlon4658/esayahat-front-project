@@ -13,6 +13,19 @@ import toursImg5 from '@/assets/images/tour_card_5.png'
 import toursImg6 from '@/assets/images/tour_card_6.png'
 import toursImg7 from '@/assets/images/tour_card_7.png'
 
+import lowestImg1 from '@/assets/images/lowest_card_1.png'
+import lowestImg2 from '@/assets/images/lowest_card_2.png'
+import lowestImg3 from '@/assets/images/lowest_card_3.png'
+import lowestImg4 from '@/assets/images/lowest_card_4.png'
+import lowestImg5 from '@/assets/images/lowest_card_5.png'
+import lowestImg6 from '@/assets/images/lowest_card_6.png'
+import lowestImg7 from '@/assets/images/lowest_card_7.png'
+import lowestImg8 from '@/assets/images/lowest_card_8.png'
+import lowestImg9 from '@/assets/images/lowest_card_9.png'
+import lowestImg10 from '@/assets/images/lowest_card_10.png'
+import lowestImg11 from '@/assets/images/lowest_card_11.png'
+import lowestImg12 from '@/assets/images/lowest_card_12.png'
+
 export default {
     name: "HomePage",
     components: {
@@ -96,7 +109,7 @@ export default {
                     date: '29 Мая',
                     time: '7 ночей',
                     price: '10 942',
-                    img: 1
+                    img: lowestImg1
                 },
                 {
                     country: 'Россия',
@@ -104,7 +117,7 @@ export default {
                     date: '29 Мая',
                     time: '6 ночей',
                     price: '11 035',
-                    img: 2
+                    img: lowestImg2
                 },
                 {
                     country: 'Красная Поляна',
@@ -112,7 +125,7 @@ export default {
                     date: '29 Мая',
                     time: '6 ночей',
                     price: '13 316',
-                    img: 3
+                    img: lowestImg3
                 },
                 {
                     country: 'Турция',
@@ -120,7 +133,7 @@ export default {
                     date: '24 Мая',
                     time: '7 ночей',
                     price: '23 248',
-                    img: 4
+                    img: lowestImg4
                 },
                 {
                     country: 'Катар',
@@ -128,7 +141,7 @@ export default {
                     date: '31 Мая',
                     time: '7 ночей',
                     price: '25 841',
-                    img: 5
+                    img: lowestImg5
                 },
                 {
                     country: 'Мармарис',
@@ -136,7 +149,7 @@ export default {
                     date: '24 Мая',
                     time: '6 ночей',
                     price: '28 567',
-                    img: 6
+                    img: lowestImg6
                 },
                 {
                     country: 'ОАЭ',
@@ -144,7 +157,7 @@ export default {
                     date: '27 Мая',
                     time: '6 ночей',
                     price: '29 379',
-                    img: 7
+                    img: lowestImg7
                 },
                 {
                     country: 'Шарджа',
@@ -152,7 +165,7 @@ export default {
                     date: '23 Мая',
                     time: '6 ночей',
                     price: '29 705',
-                    img: 8
+                    img: lowestImg8
                 },
                 {
                     country: 'Бахрейн',
@@ -160,7 +173,7 @@ export default {
                     date: '31 Мая',
                     time: '7 ночей',
                     price: '36 131',
-                    img: 9
+                    img: lowestImg9
                 },
                 {
                     country: 'Египет',
@@ -168,7 +181,7 @@ export default {
                     date: '24 Мая',
                     time: '6 ночей',
                     price: '37 732',
-                    img: 10
+                    img: lowestImg10
                 },
                 {
                     country: 'Хургада',
@@ -176,7 +189,7 @@ export default {
                     date: '27 Мая',
                     time: '6 ночей',
                     price: '42 877',
-                    img: 11
+                    img: lowestImg11
                 },
                 {
                     country: 'Армения',
@@ -184,7 +197,7 @@ export default {
                     date: '29 Мая',
                     time: '6 ночей',
                     price: '44 372',
-                    img: 12
+                    img: lowestImg12
                 },
             ],
             dateValue: '',
@@ -208,7 +221,7 @@ export default {
                             placeholder="Поиск туров и курортов"
                             class="bg-white w-full h-[50px] lg:h-[71px] ps-[20px] ps-[42px] pe-[50px] lg:pe-[94px] rounded-[10px] font-roboto text-[14px] lg:text-[18px]"
                         >
-                        <orange-button class="absolute flex items-center justify-center right-[6px] lg:right-[12px] top-[6px] lg:top-[11px] max-w-[38px] lg:w-[172px] h-[38px] lg:h-[48px] p-0 px-0">
+                        <orange-button class="absolute flex items-center justify-center right-[6px] lg:right-[12px] top-[6px] lg:top-[11px] w-[38px] lg:w-[172px] max-h-[38px] lg:max-h-[48px] ps-0 pb-0 pt-0 pe-0">
                             <span class="hidden lg:block">Поиск</span>
                             <img class="lg:hidden shrink-0 min-w-[16px]" src="@/assets/images/search.svg" alt="">
                         </orange-button>
@@ -346,7 +359,7 @@ export default {
                         :key="idx"
                         class="relative overflow-hidden w-full sm:w-[calc(50%_-_10px)] md:w-[calc(100%_/_3_-_40px_/_3)] lg:w-[calc(25%_-_15px)] shadow-[0px_10px_25px_rgba(43,63,90,0.07)] p-[14px] rounded-[15px] font-montserrat"
                     >
-                        <img :src="`src/assets/images/lowest_card_${item.img}.png`" alt="" class="w-full h-[154px] object-cover rounded-[10px] mb-[17px]">
+                        <img :src="item.img" alt="" class="w-full h-[154px] object-cover rounded-[10px] mb-[17px]">
                         <h3 class="text-[15px] font-[700] mb-[7px]">{{ item.country }}</h3>
                         <p class="text-[#808C9C] text-[14px] font-[500] mb-[7px]">{{ item.from }}</p>
                         <p class="bg-[#EEF2F8] inline-flex px-[10px] py-[7px] rounded-full text-[#333333] text-[13px] font-[400] gap-[7px] mb-[5px]">
