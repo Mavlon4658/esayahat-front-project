@@ -1,4 +1,5 @@
 <script>
+import { vMaska } from "maska";
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from 'swiper/vue';
 
@@ -28,6 +29,7 @@ import lowestImg12 from '@/assets/images/lowest_card_12.png'
 
 export default {
     name: "HomePage",
+    directives: { maska: vMaska },
     components: {
         Swiper,
         SwiperSlide,
@@ -37,6 +39,12 @@ export default {
     },
     data () {
         return {
+            maskedValue: this.money,
+            bindedObject: {
+                masked: "",
+                unmasked: "",
+                completed: false,
+            },
             tours: [
                 {
                     discount: '-51%',
@@ -201,7 +209,7 @@ export default {
                 },
             ],
             dateValue: '',
-            hotel: 1
+            hotel: 1,
         }
     }
 }
@@ -210,20 +218,81 @@ export default {
 <template>
     <div class="w-full overflow-hidden">
         <!-- Home -->
-        <section class="relative z-[1] mb-[50px] lg:mb-[67px]">
+        <section class="relative z-[2] mb-[50px] lg:mb-[67px]">
             <img src="@/assets/images/home-background.png" class="absolute z-[-1] top-0 left-0 w-full h-full object-cover object-[center_top]" alt="">
             <div class="max-w-[calc(100%_-_40px)] lg:max-w-[calc(100%_-_100px)] xl:max-w-[1124px] pt-[100px] md:pt-[150px] lg:pt-[200px] xl:pt-[238px] pb-[80px] md:pb-[100px] lg:pb-[120px] xl:pb-[152px] mx-auto">
-                <h1 class="font-roboto text-white text-[42px] md:text-[72px] xl:text-[96px] font-bold mb-[30px]">Откройте Мир с <br> STUAIR</h1>
-                <div class="relative pt-[20px] lg:pt-[57px] px-[20px] lg:px-[44px] pb-[60px] lg:pb-[93px] bg-blue rounded-[20px]">
-                    <div class="relative">
+                <div class="relative">
+                    <h1 class="font-roboto text-white text-[42px] md:text-[72px] xl:text-[96px] font-bold mb-[30px] pb-[90px] md:pb-0">Откройте Мир с <br> STUAIR</h1>
+                    <div class="absolute w-full md:w-auto right-0 bottom-0">
                         <input
                             type="text"
                             placeholder="Поиск туров и курортов"
-                            class="bg-white w-full h-[50px] lg:h-[71px] ps-[20px] ps-[42px] pe-[50px] lg:pe-[94px] rounded-[10px] font-roboto text-[14px] lg:text-[18px]"
+                            class="bg-white h-[60px] w-full md:w-[360px] rounded-full font-roboto text-[18px] font-[400] text-[#7E7E7E] ps-[42px] pe-[72px]"
                         >
-                        <orange-button class="absolute flex items-center justify-center right-[6px] lg:right-[12px] top-[6px] lg:top-[11px] w-[38px] lg:w-[172px] max-h-[38px] lg:max-h-[48px] ps-0 pb-0 pt-0 pe-0">
-                            <span class="hidden lg:block">Поиск</span>
-                            <img class="lg:hidden shrink-0 min-w-[16px]" src="@/assets/images/search.svg" alt="">
+                        <button class="absolute right-[8px] top-[6px] bg-blue rounded-full w-[48px] h-[48px] flex items-center justify-center">
+                            <img src="@/assets/images/search.svg" alt="">
+                        </button>
+                    </div>
+                </div>
+                <div class=" pt-[20px] lg:pt-[57px] px-[20px] lg:px-[44px] pb-[60px] lg:pb-[93px] bg-blue rounded-[20px]">
+                    <div class="bg-[#F4F7FB] p-[10px] rounded-[15px] mb-[20px] font-montserrat flex flex-wrap xl:flex-nowrap items-center gap-[10px]">
+                        <select class="w-full sm:w-[calc(50%_-_5px)] md:w-[calc(100%_/_3_-_20px_/_3)] xl:w-full bg-white border border-gray-300 text-[#5C6672] text-[13px] rounded-[3px] block w-full px-[10px] py-[9px]">
+                            <option hidden>Город вылета</option>
+                            <option>Canada</option>
+                            <option>France</option>
+                            <option>Germany</option>
+                        </select>
+                        <select class="w-full sm:w-[calc(50%_-_5px)] md:w-[calc(100%_/_3_-_20px_/_3)] xl:w-full bg-white border border-gray-300 text-[#5C6672] text-[13px] rounded-[3px] block w-full px-[10px] py-[9px]">
+                            <option hidden>Страна</option>
+                            <option>Canada</option>
+                            <option>France</option>
+                            <option>Germany</option>
+                        </select>
+                        <div class="w-full sm:w-[calc(50%_-_5px)] md:w-[calc(100%_/_3_-_20px_/_3)] xl:w-full">
+                            <vue-tailwind-datepicker
+                                v-model="dateValue"
+                                placeholder="Даты вылета"
+                                as-single
+                                :formatter="{date: 'YYYY-MM-DD'}"
+                                inputClasses="text-[13px] h-[38px] px-[10px] border border-gray-300 text-[#5C6672] placeholder-[#5C6672] rounded-[3px]"
+                            />
+                        </div>
+                        <div class="flex items-center justify-between w-full sm:w-[calc(50%_-_5px)] md:w-[calc(100%_/_3_-_20px_/_3)] xl:w-full bg-white border border-gray-300 text-[#5C6672] text-[13px] rounded-[3px] block w-full px-[10px] py-[9px]">
+                            <span class="leading-[18px]">Отель</span>
+                            <div class="flex items-center gap-[2px]">
+                                <button @click="hotel = 1">
+                                    <img src="@/assets/images/star.svg" alt="" :class="`${hotel < 1 ? 'opacity-0' : ''}`">
+                                </button>
+                                <img src="@/assets/images/line.svg" alt="">
+                                <button @click="hotel = 2">
+                                    <img src="@/assets/images/star.svg" alt="" :class="`${hotel < 2 ? 'opacity-0' : ''}`">
+                                </button>
+                                <img src="@/assets/images/line.svg" alt="">
+                                <button @click="hotel = 3">
+                                    <img src="@/assets/images/star.svg" alt="" :class="`${hotel < 3 ? 'opacity-0' : ''}`">
+                                </button>
+                                <img src="@/assets/images/line.svg" alt="">
+                                <button @click="hotel = 4">
+                                    <img src="@/assets/images/star.svg" alt="" :class="`${hotel < 4 ? 'opacity-0' : ''}`">
+                                </button>
+                                <img src="@/assets/images/line.svg" alt="">
+                                <button @click="hotel = 5">
+                                    <img src="@/assets/images/star.svg" alt="" :class="`${hotel < 5 ? 'opacity-0' : ''}`">
+                                </button>
+                            </div>
+                        </div>
+                        <input
+                            type="text"
+                            v-model="maskedValue"
+                            v-maska="bindedObject"
+                            data-maska="9 99#"
+                            data-maska-tokens="9:[0-9]:repeated"
+                            data-maska-reversed
+                            placeholder="Бюджет (РУБ)"
+                            class="w-full sm:w-[calc(50%_-_5px)] md:w-[calc(100%_/_3_-_20px_/_3)] xl:w-full bg-white border border-gray-300 text-[#5C6672] text-[13px] rounded-[3px] block w-full px-[10px] py-[9px] placeholder-[#5C6672]"
+                        >
+                        <orange-button class="w-full sm:w-[calc(50%_-_5px)] md:w-[calc(100%_/_3_-_20px_/_3)] xl:w-full flex items-center justify-center  max-h-[38px] ps-0 pb-0 pt-0 pe-0">
+                            <span>Поиск</span>
                         </orange-button>
                     </div>
                 </div>
@@ -295,63 +364,6 @@ export default {
         <section id="country">
             <div class="max-w-[calc(100%_-_40px)] xl:max-w-[1160px] mx-auto">
                 <h2 class="text-[#2B3F5A] font-roboto text-[36px] font-[500] leading-[34px] mb-[19px]">Самые низкие цены</h2>
-
-                <div class="bg-[#F4F7FB] p-[10px] rounded-[15px] mb-[20px] font-montserrat flex flex-wrap xl:flex-nowrap items-center gap-[10px]">
-                    <select class="w-full sm:w-[calc(50%_-_5px)] md:w-[calc(100%_/_3_-_20px_/_3)] xl:w-full bg-light border border-gray-300 text-[#5C6672] text-[13px] rounded-[3px] block w-full px-[10px] py-[9px]">
-                        <option hidden>Город вылета</option>
-                        <option>Canada</option>
-                        <option>France</option>
-                        <option>Germany</option>
-                    </select>
-                    <select class="w-full sm:w-[calc(50%_-_5px)] md:w-[calc(100%_/_3_-_20px_/_3)] xl:w-full bg-light border border-gray-300 text-[#5C6672] text-[13px] rounded-[3px] block w-full px-[10px] py-[9px]">
-                        <option hidden>Страна</option>
-                        <option>Canada</option>
-                        <option>France</option>
-                        <option>Germany</option>
-                    </select>
-                    <div class="w-full sm:w-[calc(50%_-_5px)] md:w-[calc(100%_/_3_-_20px_/_3)] xl:w-full">
-                        <vue-tailwind-datepicker
-                            v-model="dateValue"
-                            placeholder="Даты вылета"
-                            as-single
-                            inputClasses="text-[13px] h-[38px] px-[10px] border border-gray-300 text-[#5C6672] placeholder-[#5C6672] rounded-[3px]"
-                        />
-                    </div>
-                    <div class="flex items-center justify-between w-full sm:w-[calc(50%_-_5px)] md:w-[calc(100%_/_3_-_20px_/_3)] xl:w-full bg-white border border-gray-300 text-[#5C6672] text-[13px] rounded-[3px] block w-full px-[10px] py-[9px]">
-                        <span class="leading-[18px]">Отель</span>
-                        <div class="flex items-center gap-[2px]">
-                            <button @click="hotel = 1">
-                                <img src="@/assets/images/star.svg" alt="" :class="`${hotel < 1 ? 'opacity-0' : ''}`">
-                            </button>
-                            <img src="@/assets/images/line.svg" alt="">
-                            <button @click="hotel = 2">
-                                <img src="@/assets/images/star.svg" alt="" :class="`${hotel < 2 ? 'opacity-0' : ''}`">
-                            </button>
-                            <img src="@/assets/images/line.svg" alt="">
-                            <button @click="hotel = 3">
-                                <img src="@/assets/images/star.svg" alt="" :class="`${hotel < 3 ? 'opacity-0' : ''}`">
-                            </button>
-                            <img src="@/assets/images/line.svg" alt="">
-                            <button @click="hotel = 4">
-                                <img src="@/assets/images/star.svg" alt="" :class="`${hotel < 4 ? 'opacity-0' : ''}`">
-                            </button>
-                            <img src="@/assets/images/line.svg" alt="">
-                            <button @click="hotel = 5">
-                                <img src="@/assets/images/star.svg" alt="" :class="`${hotel < 5 ? 'opacity-0' : ''}`">
-                            </button>
-                        </div>
-                    </div>
-                    <select class="w-full sm:w-[calc(50%_-_5px)] md:w-[calc(100%_/_3_-_20px_/_3)] xl:w-full bg-light border border-gray-300 text-[#5C6672] text-[13px] rounded-[3px] block w-full px-[10px] py-[9px]">
-                        <option hidden>Бюджет (РУБ)</option>
-                        <option>1 000 РУБ</option>
-                        <option>10 000 РУБ</option>
-                        <option>100 000 РУБ</option>
-                    </select>
-                    <button class="w-full sm:w-[calc(50%_-_5px)] md:w-[calc(100%_/_3_-_20px_/_3)] xl:w-full flex items-center justify-between h-[38px] bg-[#fff] border border-gray-300 text-[#5C6672] text-[13px] rounded-[3px] block w-full px-[10px] py-[9px]">
-                        <span >Показать фильтры</span>
-                        <img src="@/assets/images/filter-icon.svg" alt="">
-                    </button>
-                </div>
 
                 <div class="flex flex-wrap gap-[20px] pb-[20px]">
                     <div
