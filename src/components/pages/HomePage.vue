@@ -209,6 +209,7 @@ export default {
                 },
             ],
             dateValue: '',
+            dateValue2: '',
             hotel: 1,
             radio: 1,
             radioList: ['Туры с перелетом', 'Отели', 'Авиабилеты'],
@@ -364,7 +365,7 @@ export default {
                                     </span>
                                     <span v-else>Select</span>
                                 </button>
-                                <div v-if="touristsSelectOpen" class="absolute translate-y-full -left-3 -bottom-2 bg-white border rounded-md p-3 w-[300px] shadow-xl">
+                                <div v-if="touristsSelectOpen" class="absolute translate-y-full -left-3 -bottom-2 bg-white border rounded-md p-3 w-[350px] md:w-[400px] shadow-xl">
                                     <ul>
                                         <li
                                             v-for="(item, i) in tourists"
@@ -373,8 +374,8 @@ export default {
                                             :class="i+1 != tourists.length ? 'border-b-[#f4f2f2] border-b border-solid' : ''"
                                         >
                                             <div class="flex flex-col">
-                                                <span class="text-base text-[#2B3F5A] font-medium">{{ item.title }}</span>
-                                                <span class="text-base text-[#AAB2BD]">{{ item.subtitle }}</span>
+                                                <span class="text-sm md:text-base text-[#2B3F5A] font-medium">{{ item.title }}</span>
+                                                <span class="text-sm md:text-base text-[#AAB2BD]">{{ item.subtitle }}</span>
                                             </div>
                                             <div class="flex items-center">
                                                 <button
@@ -382,7 +383,7 @@ export default {
                                                     class="w-5 h-5 text-base font-bold text-white rounded-full flex items-center justify-center"
                                                     :class="item.count == 0 ? 'bg-[#a8a7a7]' : 'bg-red-500'"
                                                 >-</button>
-                                                <span class="text-base font-medium text-center w-12">{{ item.count }}</span>
+                                                <span class="text-sm md:text-base font-medium text-center w-8 md:w-12">{{ item.count }}</span>
                                                 <button
                                                     @click="tourists[i].count++"
                                                     class="w-5 h-5 text-base font-bold text-white bg-red-500 rounded-full flex items-center justify-center"
@@ -477,6 +478,65 @@ export default {
         <section id="country">
             <div class="max-w-[calc(100%_-_40px)] xl:max-w-[1160px] mx-auto">
                 <h2 class="text-[#2B3F5A] font-roboto text-[36px] font-[500] leading-[34px] mb-[19px]">Самые низкие цены</h2>
+
+                <div class="bg-[#F4F7FB] p-[10px] rounded-[15px] mb-[20px] font-montserrat flex flex-wrap xl:flex-nowrap items-center gap-[10px]">
+                    <select class="w-full sm:w-[calc(50%_-_5px)] md:w-[calc(100%_/_3_-_20px_/_3)] xl:w-full bg-light border border-gray-300 text-[#5C6672] text-[13px] rounded-[3px] block px-[10px] py-[9px]">
+                        <option hidden>Город вылета</option>
+                        <option>Canada</option>
+                        <option>France</option>
+                        <option>Germany</option>
+                    </select>
+                    <select class="w-full sm:w-[calc(50%_-_5px)] md:w-[calc(100%_/_3_-_20px_/_3)] xl:w-full bg-light border border-gray-300 text-[#5C6672] text-[13px] rounded-[3px] block px-[10px] py-[9px]">
+                        <option hidden>Страна</option>
+                        <option>Canada</option>
+                        <option>France</option>
+                        <option>Germany</option>
+                    </select>
+                    <div class="w-full sm:w-[calc(50%_-_5px)] md:w-[calc(100%_/_3_-_20px_/_3)] xl:w-full">
+                        <vue-tailwind-datepicker
+                            v-model="dateValue2"
+                            placeholder="Даты вылета"
+                            as-single
+                            :formatter="{date: 'DD MMM', month: 'MMM'}"
+                            separator=" - "
+                            inputClasses="text-[13px] h-[38px] px-[10px] border border-gray-300 text-[#5C6672] placeholder-[#5C6672] rounded-[3px]"
+                        />
+                    </div>
+                    <div class="flex items-center justify-between w-full sm:w-[calc(50%_-_5px)] md:w-[calc(100%_/_3_-_20px_/_3)] xl:w-full bg-white border border-gray-300 text-[#5C6672] text-[13px] rounded-[3px] px-[10px] py-[9px]">
+                        <span class="leading-[18px]">Отель</span>
+                        <div class="flex items-center gap-[2px]">
+                            <button @click="hotel = 1">
+                                <img src="@/assets/images/star.svg" alt="" :class="`${hotel < 1 ? 'opacity-0' : ''}`">
+                            </button>
+                            <img src="@/assets/images/line.svg" alt="">
+                            <button @click="hotel = 2">
+                                <img src="@/assets/images/star.svg" alt="" :class="`${hotel < 2 ? 'opacity-0' : ''}`">
+                            </button>
+                            <img src="@/assets/images/line.svg" alt="">
+                            <button @click="hotel = 3">
+                                <img src="@/assets/images/star.svg" alt="" :class="`${hotel < 3 ? 'opacity-0' : ''}`">
+                            </button>
+                            <img src="@/assets/images/line.svg" alt="">
+                            <button @click="hotel = 4">
+                                <img src="@/assets/images/star.svg" alt="" :class="`${hotel < 4 ? 'opacity-0' : ''}`">
+                            </button>
+                            <img src="@/assets/images/line.svg" alt="">
+                            <button @click="hotel = 5">
+                                <img src="@/assets/images/star.svg" alt="" :class="`${hotel < 5 ? 'opacity-0' : ''}`">
+                            </button>
+                        </div>
+                    </div>
+                    <select class="w-full sm:w-[calc(50%_-_5px)] md:w-[calc(100%_/_3_-_20px_/_3)] xl:w-full bg-light border border-gray-300 text-[#5C6672] text-[13px] rounded-[3px] block px-[10px] py-[9px]">
+                        <option hidden>Бюджет (РУБ)</option>
+                        <option>1 000 РУБ</option>
+                        <option>10 000 РУБ</option>
+                        <option>100 000 РУБ</option>
+                    </select>
+                    <button class="w-full sm:w-[calc(50%_-_5px)] md:w-[calc(100%_/_3_-_20px_/_3)] xl:w-full flex items-center justify-between h-[38px] bg-[#fff] border border-gray-300 text-[#5C6672] text-[13px] rounded-[3px] px-[10px] py-[9px]">
+                        <span >Показать фильтры</span>
+                        <img src="@/assets/images/filter-icon.svg" alt="">
+                    </button>
+                </div>
 
                 <div class="flex flex-wrap gap-[20px] pb-[20px]">
                     <div
