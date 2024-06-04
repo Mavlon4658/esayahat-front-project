@@ -318,6 +318,8 @@ export default {
                                 :shortcuts="false"
                                 v-slot="{ value, placeholder }"
                                 separator=" - "
+                                as-single
+                                use-range
                                 inputClasses="text-[13px] h-[38px] px-[10px] border border-gray-300 text-[#5C6672] placeholder-[#5C6672] rounded-[3px]"
                             >
                                 <div class="flex">
@@ -362,7 +364,7 @@ export default {
                                     </span>
                                     <span v-else>Select</span>
                                 </button>
-                                <div v-if="touristsSelectOpen" class="absolute translate-y-full -left-3 -bottom-2 bg-white border rounded-md p-3 w-[300px]">
+                                <div v-if="touristsSelectOpen" class="absolute translate-y-full -left-3 -bottom-2 bg-white border rounded-md p-3 w-[300px] shadow-xl">
                                     <ul>
                                         <li
                                             v-for="(item, i) in tourists"
