@@ -273,7 +273,7 @@ export default {
                     </div>
                 </div>
                 <div class=" pt-5 px-[20px] lg:px-[30px] pb-[26px] bg-[#1EC0CA] rounded-[20px]">
-                    <div class="flex items-center justify-center gap-6 mb-5 text-white font-roboto text-[13px] font-medium">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-center gap-2 md:gap-6 mb-5 text-white font-roboto text-[13px] font-medium">
                         <button
                             v-for="(item, i) in radioList"
                             :key="i"
@@ -286,7 +286,7 @@ export default {
                                     :class="radio != i+1 ? 'hidden' : ''"
                                 ></span>
                             </span>
-                            <span>{{ item }}</span>
+                            <span class="text-left">{{ item }}</span>
                         </button>
                     </div>
                     <div class="bg-white py-[10px] px-[15px] rounded-[15px] mb-[20px] font-roboto flex flex-wrap xl:flex-nowrap gap-[10px] xl:gap-0 items-start justify-between">
