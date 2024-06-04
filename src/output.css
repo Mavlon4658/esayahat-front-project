@@ -36,12 +36,12 @@ body {
   padding: 0;
   height: 100%;
   width: 100%;
-  line-height: 1.5;
+  /* line-height: 1.5;
   font-size: 25px;
   min-height: 100%;
   -moz-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
+  text-size-adjust: 100%; */
   background-repeat: no-repeat;
   margin-inline: auto;
   scroll-behavior: smooth;
