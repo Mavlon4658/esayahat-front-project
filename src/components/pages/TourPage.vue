@@ -142,6 +142,9 @@ export default {
             document.querySelector('.swpFraction').textContent = `${swp2.activeIndex + 1}/${swp2.slides.length + 1}`
         });
     },
+    created () {
+        window.scrollTo(0,0);
+    }
 }
 </script>
 
