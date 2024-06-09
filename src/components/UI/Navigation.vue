@@ -15,9 +15,9 @@ export default {
 
 <template>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-  <div 
+  <div
     class="w-full select-none absolute z-[3] py-5 "
-    :class="$route.name == 'tour' ? 'bg-[#1EC0CA]' : 'bg-transparent'"
+    :class="$route.name == 'tour' || $route.name == 'chatbot' ? 'bg-[#1EC0CA]' : 'bg-transparent'"
   >
     <!-- <div class="flex justify-between mx-auto xl:px-[8.5rem] lg:px-24 px-5 items-center cursor-default"> -->
       <Container class="flex justify-between">
@@ -62,6 +62,3 @@ px-3 py-1 font-bold hover:bg-[#E9583B] hover:text-white transition-colors durati
     </router-link>
   </nav>
 </template>
-
-<style scoped>
-</style>
