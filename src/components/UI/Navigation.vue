@@ -19,7 +19,8 @@ export default {
     class="w-full select-none absolute z-[3] py-5 "
     :class="$route.name == 'tour' ? 'bg-[#1EC0CA]' : 'bg-transparent'"
   >
-    <div class="flex justify-between mx-auto xl:px-[8.5rem] lg:px-24 px-5 items-center cursor-default">
+    <!-- <div class="flex justify-between mx-auto xl:px-[8.5rem] lg:px-24 px-5 items-center cursor-default"> -->
+      <Container class="flex justify-between">
       <div
           class="flex cursor-pointer gap-2 items-center hover:translate-x-[.3rem] transition-all duration-200"
           @click="$router.push('/')">
@@ -41,7 +42,7 @@ px-3 py-1 font-bold hover:bg-[#E9583B] hover:text-white transition-colors durati
             to="'/'">Найти тур
         </router-link>
       </nav>
-    </div>
+    </Container>
   </div>
   <nav :class="isBurgerMenuOpened ? 'flex w-full md:hidden z-[100] absolute bg-black/30 backdrop-blur-lg' : 'hidden'"
        class="flex-col items-start cursor-default z-[1000] transition-all duration-200 ease-in-out">
