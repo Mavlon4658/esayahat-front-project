@@ -103,7 +103,7 @@ export default {
                 <!-- Write sms -->
                 <div 
                     v-if="showSelected"
-                    class="flex w-full h-[100px] sm:h-auto overflow-y-scroll sm:overflow-y-visible flex-wrap lg:flex-nowrap gap-[9px]"
+                    class="flex w-full h-[100px] sm:h-auto overflow-y-scroll sm:overflow-y-visible scrolbar-hide flex-wrap lg:flex-nowrap gap-[9px]"
                 >
                     <button
                         v-for="i in variants"
